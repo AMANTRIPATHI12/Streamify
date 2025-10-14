@@ -5,10 +5,10 @@ import cors from "cors";
 import path from "path";
 
 
-import authRoutes from "./routes/auth.route.js"
-import UserRoutes from "./routes/user.route.js"
-import chatRoutes from "./routes/chat.route.js"
-import {connectDB} from "./lib/db.js"
+import authRoutes from "./src/routes/auth.route.js"
+import UserRoutes from "./src/routes/user.route.js"
+import chatRoutes from "./src/routes/chat.route.js"
+import {connectDB} from "./src/lib/db.js"
 
 
 const app=express()

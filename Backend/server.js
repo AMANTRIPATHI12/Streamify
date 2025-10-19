@@ -15,12 +15,25 @@ const app=express()
 const port = process.env.PORT
 const __dirname=path.resolve();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://streamfy-frontend.vercel.app", // your Vercel domain
+  "https://streamfy-frontend-c45wagc3k-amantripathi12s-projects.vercel.app", // your actual preview link (optional)
+];
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
-    credentials: true, // allow frontend to send cookies
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS not allowed for this origin"));
+      }
+    },
+    credentials: true,
   })
 );
+
 
 app.use(express.json());
 app.use(cookieParser());
